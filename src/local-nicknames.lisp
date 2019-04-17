@@ -13,7 +13,9 @@
     #+sbcl
     (sb-ext:add-package-local-nickname nickname package local-to)
     #+(or abcl ecl)
-    (ext:add-package-local-nickname nickname package local-to)))
+    (ext:add-package-local-nickname nickname package local-to)
+    #+ccl
+    (ccl:add-package-local-nickname nickname package local-to)))
 
 (defmethod defpackage+-dispatch ((option (eql :local-nicknames)) params package)
   (loop :for (nick pack) :in params :do
